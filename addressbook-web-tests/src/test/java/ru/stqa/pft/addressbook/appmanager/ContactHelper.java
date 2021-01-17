@@ -63,7 +63,7 @@ public class ContactHelper extends BaseHelper {
         click(By.name("update"));
     }
 
-    public void changeContactCreationForm(ContactData contactData) {
+    public void fillContactModificationForm(ContactData contactData) {
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("middlename"), contactData.getMiddlername());
         type(By.name("lastname"), contactData.getLastname());
