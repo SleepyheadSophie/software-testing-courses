@@ -16,25 +16,11 @@ public class NavigationHelper extends BaseHelper {
         click(By.linkText("groups"));
     }
 
-    public void returnGroupPage() {
-        if (isElementPresent(By.tagName("h1")) && wd.findElement(By.tagName("h1")).equals("Groups") && isElementPresent(By.name("new"))){
-            return;
-        }
-        click(By.linkText("group page"));
-    }
-
     public void gotoContactCreationPage() {
         if (isElementPresent(By.tagName("h1")) && wd.findElement(By.tagName("h1")).equals("Edit / add address book entry")){
             return;
         }
         click(By.linkText("add new"));
-    }
-
-    public void returnHomePage() {
-        if (isElementPresent(By.id("maintable"))){
-            return;
-        }
-        click(By.linkText("home page"));
     }
 
     public void gotoHomePage() {

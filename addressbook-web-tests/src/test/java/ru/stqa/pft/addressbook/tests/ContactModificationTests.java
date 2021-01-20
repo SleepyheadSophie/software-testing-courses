@@ -18,7 +18,7 @@ public class ContactModificationTests extends TestBase{
                 null,
                 "321", "321", "321"), false);
         app.getContactHelper().submitContactModification();
-        app.getNavigationHelper().returnHomePage();
+        app.getContactHelper().returnHomePage();
 
     }
 }

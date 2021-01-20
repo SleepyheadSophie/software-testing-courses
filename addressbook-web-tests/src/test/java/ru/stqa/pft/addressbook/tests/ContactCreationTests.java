@@ -17,7 +17,7 @@ public class ContactCreationTests extends TestBase {
                 "test1",
                 "123", "123", "123"), true);
         app.getContactHelper().submitContactCreation();
-        app.getNavigationHelper().returnHomePage();
+        app.getContactHelper().returnHomePage();
     }
 
 }
