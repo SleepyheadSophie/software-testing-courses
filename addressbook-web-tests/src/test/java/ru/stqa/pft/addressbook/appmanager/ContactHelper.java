@@ -7,6 +7,8 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends BaseHelper {
 
+    private NavigationHelper navigationHelper = new NavigationHelper(wd);
+
     public ContactHelper(WebDriver wd) {
         super(wd);
     }
@@ -70,5 +72,16 @@ public class ContactHelper extends BaseHelper {
 
     public void returnHomePage() {
         click(By.linkText("home page"));
+    }
+
+    public void createContact(ContactData contactData) {
+        navigationHelper.gotoContactCreationPage();
+        fillContactForm(contactData, true);
+        submitContactCreation();
+        returnHomePage();
+    }
+
+    public boolean isThereAContact() {
+        return wd.findElement(By.id("search_count")).equals("0");
     }
 }
