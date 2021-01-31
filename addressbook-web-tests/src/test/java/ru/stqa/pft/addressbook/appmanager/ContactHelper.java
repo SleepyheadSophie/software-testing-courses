@@ -91,12 +91,12 @@ public class ContactHelper extends BaseHelper {
 
     public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<>();
-        List<WebElement> elements = wd.findElements(By.xpath("//tr[@name = 'entry']"));
+        List<WebElement> elements = wd.findElements(By.cssSelector("tr[name = 'entry']"));
         for (WebElement element: elements){
-            String s = element.getText();
-            String[] str = s.split(" ");
+            String lastname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
+            String name = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            ContactData contact = new ContactData(id, str[1], null, str[0], null, null, null,
+            ContactData contact = new ContactData(id, name, null, lastname, null, null, null,
                     null, null, null, null, null, null, null, null, null,
                     null, null, null, null, null, null, null, null, null,null);
             contacts.add(contact);
