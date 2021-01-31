@@ -1,35 +1,36 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.List;
 
+import static org.testng.Assert.*;
+
 public class ContactDeletionTests  extends TestBase{
+
+    @BeforeMethod
+    public void ensurePreconditions(){
+        app.goTo().homePage();
+        if (app.contact().list().size() == 0){
+            app.contact().create(new ContactData()
+                    .withFirstname("Alex").withMiddlername("Vladimirovich").withLastname("Maloenko")
+                    .withBday("29").withBmonth("December").withByear("1996").withAday("17").withAmonth("October").withAyear("2000").withGroup("test1"));
+        }
+    }
 
     @Test
     public void testContactDeletion(){
-        app.goTo().homePage();
-        if (! app.getContactHelper().isThereAContact()){
-            app.getContactHelper().createContact(new ContactData("Alex", "Vladimirovich", "Maloenko",
-                    "sleepyhead", "title1", "company1", "Moscow, Russia",
-                    "111", "89160001122", "232", "123",
-                    "maloenko@mail.ru", "mail1@mail.ru", "mail2@mai.ru", "ttt.com",
-                    "29", "December", "1996",
-                    "17", "October", "2000",
-                    "test1",
-                    "123", "123", "123"));
-        }
-        List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().selectContact(before.size() - 1);
-        app.getContactHelper().deleteSelectedContacts();
-        app.getContactHelper().confirmContactDeletion();
-        app.goTo().homePage();
-        List<ContactData> after = app.getContactHelper().getContactList();
-        Assert.assertEquals(after.size(), before.size() - 1);
+        List<ContactData> before = app.contact().list();
+        int index = before.size() - 1;
+        app.contact().delete(index);
+        List<ContactData> after = app.contact().list();
+        assertEquals(after.size(), before.size() - 1);
 
-        before.remove(before.size() - 1);
-        Assert.assertEquals(before, after);
+        before.remove(index);
+        assertEquals(before, after);
     }
+
+
 }
