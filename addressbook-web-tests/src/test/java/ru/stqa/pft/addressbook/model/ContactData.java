@@ -30,6 +30,7 @@ public class ContactData {
     private String phone2;
     private String notes;
     private String allPhones;
+    private String allEmails;
 
     public int getId() {
         return id;
@@ -270,6 +271,15 @@ public class ContactData {
 
     public String getAllPhones() {
         return allPhones;
+    }
+
+    public String getAllEmails() {
+        return allEmails;
+    }
+
+    public ContactData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
+        return this;
     }
 
     @Override

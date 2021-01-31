@@ -19,19 +19,39 @@ public class ContactPhoneTests extends TestBase{
         app.goTo().homePage();
         if (app.contact().all().size() == 0){
             app.contact().create(new ContactData()
-                    .withFirstname("Alex").withMiddlername("Vladimirovich").withLastname("Maloenko")
-                    .withBday("29").withBmonth("December").withByear("1996").withAday("17").withAmonth("October").withAyear("2000").withGroup("test1")
-                    .withHomeTel("111").withMobileTel("222").withWork("333"));
+                    .withFirstname("Alex").withMiddlername("Vladimirovich").withLastname("Maloenko").withAddress("Moscow Russia")
+                            .withHomeTel("111").withMobileTel("222").withWork("333").withBday("29")
+                            .withEmail("email@mail.ru").withEmail2("email2@mail.ru").withEmail3("email3@mail.ru")
+                            .withBmonth("December").withByear("1996").withAday("17").withAmonth("October").withAyear("2000").withGroup("test1")
+                    );
         }
     }
 
     @Test
-    public void testContactCreationTests() {
+    public void testContactPhones() {
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
         assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
-        assertThat(contact.getMobileTel(), equalTo(cleaned(contactInfoFromEditForm.getMobileTel())));
-        assertThat(contact.getWork(), equalTo(cleaned(contactInfoFromEditForm.getWork())));
+    }
+
+    @Test
+    public void testContactAddress() {
+        ContactData contact = app.contact().all().iterator().next();
+        ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+        assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
+    }
+
+    @Test
+    public void testContactEmails() {
+        ContactData contact = app.contact().all().iterator().next();
+        ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
+    }
+
+    private String mergeEmails(ContactData contact) {
+        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
+                .stream().filter((s) -> ! s.equals(""))
+                .collect(Collectors.joining("\n"));
     }
 
     private String mergePhones(ContactData contact) {
