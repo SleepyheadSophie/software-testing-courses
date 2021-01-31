@@ -5,8 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactHelper extends BaseHelper {
@@ -58,6 +58,10 @@ public class ContactHelper extends BaseHelper {
         wd.findElements(By.xpath("//input[@type='checkbox']")).get(index).click();
     }
 
+    public void selectContactById(int id) {
+        wd.findElement(By.xpath("//input[@id='"+id+"']")).click();
+    }
+
     public void deleteSelectedContacts() {
         click(By.xpath("//input[@value='Delete']"));
     }
@@ -66,8 +70,8 @@ public class ContactHelper extends BaseHelper {
         wd.switchTo().alert().accept();
     }
 
-    public void initContactModification(int index) {
-        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+    public void initContactModification(int id) {
+        wd.findElement(By.xpath("//input[@id='"+id+"']/../..//img[@alt='Edit']")).click();
     }
 
     public void submitContactModification() {
@@ -85,15 +89,15 @@ public class ContactHelper extends BaseHelper {
         returnHomePage();
     }
 
-    public void modify(ContactData contact, int index) {
-        initContactModification(index);
+    public void modify(ContactData contact) {
+        initContactModification(contact.getId());
         fillContactForm(contact, false);
         submitContactModification();
         returnHomePage();
     }
 
-    public void delete(int index) {
-        selectContact(index);
+    public void delete(ContactData contact) {
+        selectContactById(contact.getId());
         deleteSelectedContacts();
         confirmContactDeletion();
         navigationHelper.homePage();
@@ -103,8 +107,8 @@ public class ContactHelper extends BaseHelper {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public List<ContactData> list() {
-        List<ContactData> contacts = new ArrayList<>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.cssSelector("tr[name = 'entry']"));
         for (WebElement element: elements){
             String lastname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
