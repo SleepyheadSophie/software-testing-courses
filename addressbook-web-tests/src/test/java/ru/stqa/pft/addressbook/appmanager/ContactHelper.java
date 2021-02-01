@@ -22,6 +22,7 @@ public class ContactHelper extends BaseHelper {
         type(By.name("middlename"), contactData.getMiddlername());
         type(By.name("lastname"), contactData.getLastname());
         type(By.name("nickname"), contactData.getNickname());
+        attach(By.name("photo"), contactData.getPhoto());
         type(By.name("title"), contactData.getTitle());
         type(By.name("company"), contactData.getCompany());
         type(By.name("address"), contactData.getAddress());
@@ -48,7 +49,6 @@ public class ContactHelper extends BaseHelper {
         type(By.name("phone2"), contactData.getPhone2());
         type(By.name("notes"), contactData.getNotes());
     }
-
 
     public void submitContactCreation() {
         click(By.xpath("(//input[@name='submit'])"));
