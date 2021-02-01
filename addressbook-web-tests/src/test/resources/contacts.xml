@@ -1,0 +1,38 @@
+<list>
+  <contact>
+    <firstname>name 0</firstname>
+    <middlername>middlename 0</middlername>
+    <lastname>lastname 0</lastname>
+    <bday>29</bday>
+    <bmonth>December</bmonth>
+    <byear>1996</byear>
+    <aday>17</aday>
+    <amonth>October</amonth>
+    <ayear>2000</ayear>
+    <group>test1</group>
+  </contact>
+  <contact>
+    <firstname>name 1</firstname>
+    <middlername>middlename 1</middlername>
+    <lastname>lastname 1</lastname>
+    <bday>29</bday>
+    <bmonth>December</bmonth>
+    <byear>1996</byear>
+    <aday>17</aday>
+    <amonth>October</amonth>
+    <ayear>2000</ayear>
+    <group>test1</group>
+  </contact>
+  <contact>
+    <firstname>name 2</firstname>
+    <middlername>middlename 2</middlername>
+    <lastname>lastname 2</lastname>
+    <bday>29</bday>
+    <bmonth>December</bmonth>
+    <byear>1996</byear>
+    <aday>17</aday>
+    <amonth>October</amonth>
+    <ayear>2000</ayear>
+    <group>test1</group>
+  </contact>
+</list>

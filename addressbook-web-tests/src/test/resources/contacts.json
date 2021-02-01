@@ -1,0 +1,38 @@
+[
+  {
+    "firstname": "name 0",
+    "middlername": "middlename 0",
+    "lastname": "lastname 0",
+    "bday": "29",
+    "bmonth": "December",
+    "byear": "1996",
+    "aday": "17",
+    "amonth": "October",
+    "ayear": "2000",
+    "group": "test1"
+  },
+  {
+    "firstname": "name 1",
+    "middlername": "middlename 1",
+    "lastname": "lastname 1",
+    "bday": "29",
+    "bmonth": "December",
+    "byear": "1996",
+    "aday": "17",
+    "amonth": "October",
+    "ayear": "2000",
+    "group": "test1"
+  },
+  {
+    "firstname": "name 2",
+    "middlername": "middlename 2",
+    "lastname": "lastname 2",
+    "bday": "29",
+    "bmonth": "December",
+    "byear": "1996",
+    "aday": "17",
+    "amonth": "October",
+    "ayear": "2000",
+    "group": "test1"
+  }
+]
