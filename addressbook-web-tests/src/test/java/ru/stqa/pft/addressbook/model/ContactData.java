@@ -3,52 +3,126 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
 @XStreamAlias("contact")
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
     @XStreamOmitField
+    @Id
+    @Column(name = "id")
     private int id = Integer.MAX_VALUE;
+
     @Expose
+    @Column(name = "firstname")
     private String firstname;
+
     @Expose
-    private String middlername;
+    @Column(name = "middlename")
+    private String middlename;
+
     @Expose
+    @Column(name = "lastname")
     private String lastname;
+
+    @Column(name = "nickname")
     private String nickname;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "company")
     private String company;
+
+    @Column(name = "address")
+    @Type(type = "text")
     private String address;
+
+    @Column(name = "home")
+    @Type(type = "text")
     private String homeTel;
+
+    @Column(name = "mobile")
+    @Type(type = "text")
     private String mobileTel;
+
+    @Column(name = "work")
+    @Type(type = "text")
     private String work;
+
+    @Column(name = "fax")
+    @Type(type = "text")
     private String fax;
+
+    @Column(name = "email")
+    @Type(type = "text")
     private String email;
+
+    @Column(name = "email2")
+    @Type(type = "text")
     private String email2;
+
+    @Column(name = "email3")
+    @Type(type = "text")
     private String email3;
+
+    @Column(name = "homepage")
+    @Type(type = "text")
     private String homepage;
+
     @Expose
-    private String bday;
+    @Column(name = "bday", columnDefinition = "TINYINT")
+    private int bday;
+
     @Expose
+    @Column(name = "bmonth")
     private String bmonth;
+
     @Expose
+    @Column(name = "byear")
     private String byear;
+
     @Expose
-    private String aday;
+    @Column(name = "aday", columnDefinition = "TINYINT")
+    private int aday;
+
     @Expose
+    @Column(name = "amonth")
     private String amonth;
+
     @Expose
+    @Column(name = "ayear")
     private String ayear;
+
     @Expose
+    @Transient
     private String group;
+
+    @Column(name = "address2")
+    @Type(type = "text")
     private String address2;
+
+    @Column(name = "phone2")
+    @Type(type = "text")
     private String phone2;
+
+    @Column(name = "notes")
+    @Type(type = "text")
     private String notes;
+
+    @Transient
     private String allPhones;
+    @Transient
     private String allEmails;
-    private File photo;
+
+    @Column(name = "photo")
+    @Type(type = "text")
+    private String photo;
 
     public int getId() {
         return id;
@@ -69,12 +143,12 @@ public class ContactData {
     }
 
     public ContactData withMiddlername(String middlername) {
-        this.middlername = middlername;
+        this.middlename = middlername;
         return this;
     }
 
-    public String getMiddlername() {
-        return middlername;
+    public String getMiddlename() {
+        return middlename;
     }
 
     public ContactData withLastname(String lastname) {
@@ -195,12 +269,12 @@ public class ContactData {
     }
 
     public ContactData withBday(String bday) {
-        this.bday = bday;
+        this.bday = Integer.parseInt(bday);
         return this;
     }
 
     public String getBday() {
-        return bday;
+        return String.valueOf(bday);
     }
 
     public ContactData withBmonth(String bmonth) {
@@ -222,12 +296,12 @@ public class ContactData {
     }
 
     public ContactData withAday(String aday) {
-        this.aday = aday;
+        this.aday = Integer.parseInt(aday);
         return this;
     }
 
     public String getAday() {
-        return aday;
+        return String.valueOf(aday);
     }
 
     public ContactData withAmonth(String amonth) {
@@ -302,12 +376,12 @@ public class ContactData {
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     @Override
