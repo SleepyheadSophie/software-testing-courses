@@ -385,6 +385,25 @@ public class ContactData {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ContactData that = (ContactData) o;
+        return id == that.id &&
+                bday == that.bday &&
+                Objects.equals(firstname, that.firstname) &&
+                Objects.equals(middlename, that.middlename) &&
+                Objects.equals(lastname, that.lastname) &&
+                Objects.equals(bmonth, that.bmonth) &&
+                Objects.equals(byear, that.byear);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstname, middlename, lastname, bday, bmonth, byear);
+    }
+
+    @Override
     public String toString() {
         return "ContactData{" +
                 "id=" + id +
@@ -393,17 +412,4 @@ public class ContactData {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ContactData that = (ContactData) o;
-        return Objects.equals(firstname, that.firstname) &&
-                Objects.equals(lastname, that.lastname);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstname, lastname);
-    }
 }
