@@ -20,7 +20,7 @@ public class ContactPhoneTests extends TestBase{
                     .withFirstname("Alex").withMiddlername("Vladimirovich").withLastname("Maloenko").withAddress("Moscow Russia")
                             .withHomeTel("111").withMobileTel("222").withWork("333").withBday("29")
                             .withEmail("email@mail.ru").withEmail2("email2@mail.ru").withEmail3("email3@mail.ru")
-                            .withBmonth("December").withByear("1996").withAday("17").withAmonth("October").withAyear("2000").withGroup("test1")
+                            .withBmonth("December").withByear("1996").withAday("17").withAmonth("October").withAyear("2000")
                     );
         }
     }

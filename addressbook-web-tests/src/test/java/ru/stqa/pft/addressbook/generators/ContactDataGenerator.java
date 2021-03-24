@@ -54,7 +54,7 @@ public class ContactDataGenerator {
         for (int i =0; i<count; i++){
             contacts.add(new ContactData()
                     .withFirstname(String.format("name %s", i)).withMiddlername(String.format("middlename %s", i)).withLastname(String.format("lastname %s", i))
-                    .withBday("29").withBmonth("December").withByear("1996").withAday("17").withAmonth("October").withAyear("2000").withGroup("test1"));
+                    .withBday("29").withBmonth("December").withByear("1996").withAday("17").withAmonth("October").withAyear("2000"));
         }
         return contacts;
     }
