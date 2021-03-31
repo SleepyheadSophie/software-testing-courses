@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -153,5 +154,22 @@ public class ContactHelper extends BaseHelper {
                 .withHomeTel(home).withMobileTel(mobile).withWork(work)
                 .withAddress(address)
                 .withEmail(email).withEmail2(email2).withEmail3(email3);
+    }
+
+    public void addToGroup(ContactData contact, GroupData group) throws InterruptedException {
+        selectContactById(contact.getId());
+        wd.findElement(By.name("to_group")).click();
+        Thread.sleep(1000);
+        wd.findElement(By.xpath("//select[@name='to_group']/option[@value='"+group.getId()+"']")).click();
+        Thread.sleep(1000);
+        wd.findElement(By.name("add")).click();
+        Thread.sleep(2000);
+    }
+
+    public void deleteFromGroup(ContactData contact, GroupData group) {
+        wd.findElement(By.name("group")).click();
+        wd.findElement(By.xpath("//option[@value='"+group.getId()+"']")).click();
+        selectContactById(contact.getId());
+        wd.findElement(By.name("remove")).click();
     }
 }
